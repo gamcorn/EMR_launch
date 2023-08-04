@@ -1,0 +1,107 @@
+[I 2023-04-07 16:14:47.900 JupyterHub provider:574] Creating oauth client jupyterhub-user-jovyan
+[I 2023-04-07 16:14:47.928 JupyterHub spawner:1483] Spawning jupyterhub-singleuser --port=36543 --debug
+[D 2023-04-07 16:14:48.676 SingleUserNotebookApp application:190] Searching ['/home/jovyan/.jupyter', '/home/jovyan/.local/etc/jupyter', '/opt/conda/etc/jupyter', '/usr/local/etc/jupyter', '/etc/jupyter'] for config files
+[D 2023-04-07 16:14:48.676 SingleUserNotebookApp application:902] Looking for jupyter_config in /etc/jupyter
+[D 2023-04-07 16:14:48.676 SingleUserNotebookApp application:902] Looking for jupyter_config in /usr/local/etc/jupyter
+[D 2023-04-07 16:14:48.676 SingleUserNotebookApp application:902] Looking for jupyter_config in /opt/conda/etc/jupyter
+[D 2023-04-07 16:14:48.676 SingleUserNotebookApp application:902] Looking for jupyter_config in /home/jovyan/.local/etc/jupyter
+[D 2023-04-07 16:14:48.676 SingleUserNotebookApp application:902] Looking for jupyter_config in /home/jovyan/.jupyter
+[D 2023-04-07 16:14:48.677 SingleUserNotebookApp application:902] Looking for jupyter_notebook_config in /etc/jupyter
+[D 2023-04-07 16:14:48.798 SingleUserNotebookApp application:923] Loaded config file: /etc/jupyter/jupyter_notebook_config.py
+[D 2023-04-07 16:14:48.798 SingleUserNotebookApp application:902] Looking for jupyter_notebook_config in /usr/local/etc/jupyter
+[D 2023-04-07 16:14:48.799 SingleUserNotebookApp application:902] Looking for jupyter_notebook_config in /opt/conda/etc/jupyter
+[D 2023-04-07 16:14:48.799 SingleUserNotebookApp application:902] Looking for jupyter_notebook_config in /home/jovyan/.local/etc/jupyter
+[D 2023-04-07 16:14:48.799 SingleUserNotebookApp application:902] Looking for jupyter_notebook_config in /home/jovyan/.jupyter
+[D 2023-04-07 16:14:48.799 SingleUserNotebookApp notebookapp:1702] Raising open file limit: soft 1024->4096; hard 65536->65536
+[D 2023-04-07 16:14:48.800 SingleUserNotebookApp s3manager:107] s3manager._validate_bucket: User provided bucket: pao-emr-bucket
+[I 2023-04-07 16:14:48.891 JupyterHub log:189] 302 GET /hub/spawn/jovyan -> /hub/spawn-pending/jovyan (jovyan@::ffff:172.31.33.43) 1004.81ms
+[I 2023-04-07 16:14:48.932 JupyterHub pages:402] jovyan is pending spawn
+[D 2023-04-07 16:14:49.838 SingleUserNotebookApp s3_fs:247] S3FS.unprefix: self.prefix_: pao-emr-bucket/jupyter/jovyan path: ['.s3keep']
+[D 2023-04-07 16:14:49.838 SingleUserNotebookApp s3_fs:174] S3contents.S3FS: Making dir: `pao-emr-bucket/jupyter/jovyan/.s3keep`
+Traceback (most recent call last):
+  File "/opt/conda/bin/jupyterhub-singleuser", line 10, in <module>
+    sys.exit(main())
+  File "/opt/conda/lib/python3.9/site-packages/jupyter_core/application.py", line 277, in launch_instance
+    return super().launch_instance(argv=argv, **kwargs)
+  File "/opt/conda/lib/python3.9/site-packages/traitlets/config/application.py", line 1042, in launch_instance
+    app.initialize(argv)
+  File "/opt/conda/lib/python3.9/site-packages/jupyterhub/singleuser/mixins.py", line 852, in initialize
+    result = super().initialize(*args, **kwargs)
+  File "/opt/conda/lib/python3.9/site-packages/jupyterhub/singleuser/mixins.py", line 573, in initialize
+    return super().initialize(argv)
+  File "/opt/conda/lib/python3.9/site-packages/traitlets/config/application.py", line 113, in inner
+    return method(app, *args, **kwargs)
+  File "/opt/conda/lib/python3.9/site-packages/notebook/notebookapp.py", line 2147, in initialize
+    self.init_configurables()
+  File "/opt/conda/lib/python3.9/site-packages/notebook/notebookapp.py", line 1660, in init_configurables
+    self.contents_manager = self.contents_manager_class(
+  File "/opt/conda/lib/python3.9/site-packages/s3contents/s3manager.py", line 52, in __init__
+    self._fs = S3FS(
+  File "/opt/conda/lib/python3.9/site-packages/s3contents/s3_fs.py", line 97, in __init__
+    self.init()
+  File "/opt/conda/lib/python3.9/site-packages/s3contents/s3_fs.py", line 101, in init
+    self.mkdir("")
+  File "/opt/conda/lib/python3.9/site-packages/s3contents/s3_fs.py", line 175, in mkdir
+    self.fs.touch(path_)
+  File "/opt/conda/lib/python3.9/site-packages/s3fs/core.py", line 511, in touch
+    self._call_s3(self.s3.put_object, kwargs, Bucket=bucket, Key=key)
+  File "/opt/conda/lib/python3.9/site-packages/s3fs/core.py", line 200, in _call_s3
+    return method(**additional_kwargs)
+  File "/opt/conda/lib/python3.9/site-packages/botocore/client.py", line 386, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/opt/conda/lib/python3.9/site-packages/botocore/client.py", line 691, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "/opt/conda/lib/python3.9/site-packages/botocore/client.py", line 711, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/opt/conda/lib/python3.9/site-packages/botocore/endpoint.py", line 102, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/opt/conda/lib/python3.9/site-packages/botocore/endpoint.py", line 132, in _send_request
+    request = self.create_request(request_dict, operation_model)
+  File "/opt/conda/lib/python3.9/site-packages/botocore/endpoint.py", line 115, in create_request
+    self._event_emitter.emit(event_name, request=request,
+  File "/opt/conda/lib/python3.9/site-packages/botocore/hooks.py", line 356, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/opt/conda/lib/python3.9/site-packages/botocore/hooks.py", line 228, in emit
+    return self._emit(event_name, kwargs)
+  File "/opt/conda/lib/python3.9/site-packages/botocore/hooks.py", line 211, in _emit
+    response = handler(**kwargs)
+  File "/opt/conda/lib/python3.9/site-packages/botocore/signers.py", line 90, in handler
+    return self.sign(operation_name, request)
+  File "/opt/conda/lib/python3.9/site-packages/botocore/signers.py", line 162, in sign
+    auth.add_auth(request)
+  File "/opt/conda/lib/python3.9/site-packages/botocore/auth.py", line 373, in add_auth
+    raise NoCredentialsError()
+botocore.exceptions.NoCredentialsError: Unable to locate credentials
+Task exception was never retrieved
+future: <Task finished name='Task-2072' coro=<BaseHandler.spawn_single_user() done, defined at /opt/conda/lib/python3.9/site-packages/jupyterhub/handlers/base.py:796> exception=HTTPError()>
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.9/site-packages/jupyterhub/handlers/base.py", line 996, in spawn_single_user
+    await gen.with_timeout(
+asyncio.exceptions.TimeoutError: Timeout
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.9/site-packages/jupyterhub/handlers/base.py", line 1030, in spawn_single_user
+    raise web.HTTPError(
+tornado.web.HTTPError: HTTP 500: Internal Server Error (Spawner failed to start [status=1]. The logs for jovyan may contain details.)
+[W 2023-04-07 16:15:16.037 JupyterHub user:767] jovyan's server never showed up at http://127.0.0.1:36543/user/jovyan/ after 30 seconds. Giving up
+[E 2023-04-07 16:15:16.066 JupyterHub gen:630] Exception in Future <Task finished name='Task-2073' coro=<BaseHandler.spawn_single_user.<locals>.finish_user_spawn() done, defined at /opt/conda/lib/python3.9/site-packages/jupyterhub/handlers/base.py:900> exception=TimeoutError("Server at http://127.0.0.1:36543/user/jovyan/ didn't respond in 30 seconds")> after timeout
+    Traceback (most recent call last):
+      File "/opt/conda/lib/python3.9/site-packages/tornado/gen.py", line 625, in error_callback
+        future.result()
+      File "/opt/conda/lib/python3.9/site-packages/jupyterhub/handlers/base.py", line 907, in finish_user_spawn
+        await spawn_future
+      File "/opt/conda/lib/python3.9/site-packages/jupyterhub/user.py", line 748, in spawn
+        await self._wait_up(spawner)
+      File "/opt/conda/lib/python3.9/site-packages/jupyterhub/user.py", line 795, in _wait_up
+        raise e
+      File "/opt/conda/lib/python3.9/site-packages/jupyterhub/user.py", line 762, in _wait_up
+        resp = await server.wait_up(
+      File "/opt/conda/lib/python3.9/site-packages/jupyterhub/utils.py", line 236, in wait_for_http_server
+        re = await exponential_backoff(
+      File "/opt/conda/lib/python3.9/site-packages/jupyterhub/utils.py", line 184, in exponential_backoff
+        raise TimeoutError(fail_message)
+    TimeoutError: Server at http://127.0.0.1:36543/user/jovyan/ didn't respond in 30 seconds
+
+[I 2023-04-07 16:15:16.067 JupyterHub log:189] 200 GET /hub/api/users/jovyan/server/progress (jovyan@::ffff:172.31.33.43) 27067.75ms

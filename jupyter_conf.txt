@@ -1,0 +1,1 @@
+[{"classification":"jupyter-s3-conf","properties":{"s3.persistence.bucket":"pao-emr-bucket/notebooks","s3.persistence.enabled":"true"}}]

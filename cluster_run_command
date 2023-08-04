@@ -1,0 +1,14 @@
+aws emr create-cluster \
+ --name "Mon cluster" \
+ --release-label "emr-6.10.0" \
+ --service-role "arn:aws:iam::566520220482:role/service-role/AmazonEMR-ServiceRole-20230407T144028" \
+ --security-configuration "emr-pao" \
+ --ec2-attributes '{"InstanceProfile":"AmazonEMR-InstanceProfile-20230407T144013","EmrManagedMasterSecurityGroup":"sg-077fbce94e3765367","EmrManagedSlaveSecurityGroup":"sg-066ffdddc6a16ca68","KeyName":"pao-emr-ec2","AdditionalMasterSecurityGroups":[],"AdditionalSlaveSecurityGroups":[],"SubnetId":"subnet-015298e07c6a63aff"}' \
+ --tags 'for-use-with-amazon-emr-managed-policies=true' \
+ --applications Name=Hadoop Name=JupyterHub Name=Spark Name=TensorFlow \
+ --instance-groups '[{"InstanceCount":1,"InstanceGroupType":"MASTER","Name":"Primaire","InstanceType":"m5.xlarge","EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType":"gp2","SizeInGB":32},"VolumesPerInstance":2}]}},{"InstanceCount":1,"InstanceGroupType":"CORE","Name":"Unité principale","InstanceType":"m5.xlarge","EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType":"gp2","SizeInGB":32},"VolumesPerInstance":2}]}}]' \
+ --bootstrap-actions '[{"Args":[],"Name":"mount s3fs ","Path":"s3://pao-emr-bucket/config/bootloader.sh"}]' \
+ --scale-down-behavior "TERMINATE_AT_TASK_COMPLETION" \
+ --auto-termination-policy '{"IdleTimeout":5400}' \
+ --os-release-label "2.0.20230320.0" \
+ --region "eu-west-3"
