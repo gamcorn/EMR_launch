@@ -1,4 +1,9 @@
 #!/bin/bash
+
+#------------------- Install libraries on system python3 (just in case) ---------------
+
+python3 -m pip install pandas tensorflow Pillow pyspark pyarrow keras s3fs
+
 #------------------ Service to synchronize with S3 -----------------
 
 sudo mkdir -p /emr/notebooks
@@ -94,7 +99,6 @@ echo "$SERVICE_CONTENT" | sudo tee "$SERVICE_FILE" > /dev/null
 
 # Reload systemd
 sudo systemctl daemon-reload
-
 
 #---------------- Load and run Services ---------------------
 
